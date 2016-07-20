@@ -14,8 +14,15 @@ var port = process.env.PORT || 8080;
 
 
 //Jade
+var path = require('path');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
+app.get('/', function(req, res, next){
+    res.render('index', {
+        title:"Sean's ShortURL"
+    });
+});
 
 //Listen on port
 app.listen(port, function () {
