@@ -1,5 +1,7 @@
 'use strict';
 
+var logger = require('morgan');
+
 //Express
 var express = require('express');
 var app = express();
@@ -15,7 +17,7 @@ var port = process.env.PORT || 8080;
 
 //Jade
 var path = require('path');
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'jade');
 
 app.get('/', function(req, res, next){
