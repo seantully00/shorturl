@@ -1,15 +1,28 @@
 'use strict';
 
 var logger = require('morgan');
+var key = 0;
 
 //Express
 var express = require('express');
 var app = express();
 
-//MongoDB
-var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
+//Mongoose
+var mongoose = require('mongoose');
 var url = process.env.MONGOLAB_URI;
+mongoose.connect(url);
+var conn = mongoose.connection;
+
+
+//Get URLs
+app.get('/new/:origurl', function(req, res) {
+    var origurl = req.params.origurl;
+    var newurl = "https://sturlshortener.herokuapp.com/" + key;
+    key = key + 1;
+    var doc = {'origurl': origurl, 'newurl': newurl};
+    res.write(JSON.stringify(doc));
+    conn.colection('urls').insert(doc);
+});
 
 //Define port
 var port = process.env.PORT || 8080;

@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "*",
     "jade": "*",
+    "mongoose": "^4.5.5",
     "morgan": "^1.7.0",
     "path": "^0.12.7"
   }
