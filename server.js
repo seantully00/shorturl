@@ -1,7 +1,7 @@
 'use strict';
 
 var logger = require('morgan');
-var key = 0;
+var key = 1;
 
 //Express
 var express = require('express');
