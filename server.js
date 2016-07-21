@@ -21,7 +21,7 @@ app.get('/new/:origurl', function(req, res) {
     key = key + 1;
     var doc = {'origurl': origurl, 'newurl': newurl};
     res.write(JSON.stringify(doc));
-    conn.colection('urls').insert(doc);
+    conn.collection('urls').insert(doc);
 });
 
 //Define port
