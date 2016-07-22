@@ -43,7 +43,7 @@ app.get('/new/:origurl', function(req, res) {
 app.get('/:number', function(req, res) {
     var pullurl = mongoose.model('newurl', urlSchema);
     var number = req.params.number;
-    conn.findOne({'key': number}, 'origurl', function(err, res) {
+    pullurl.findOne({'key': number}, 'origurl', function(err, res) {
         if (err) {
             res.json({
                 "status": "Error"
@@ -52,8 +52,8 @@ app.get('/:number', function(req, res) {
             res.redirect(res.origurl);
         }
         
-    })
-})
+    });
+});
 
 
 //Define port
