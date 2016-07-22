@@ -20,10 +20,10 @@ var urlSchema = mongoose.Schema({
 });
 
 
-function urltest(url) {
+function urltest(testurl) {
     var a = "www.";
     var b = "http";
-    if (url.substring(0, a.length) != a || url.substring(0, b.length) != b) {
+    if (testurl.substring(0, a.length) != a || testurl.substring(0, b.length) != b) {
         console.log("Error: Not an acceptable url");
     }
 }
