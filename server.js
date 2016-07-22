@@ -32,7 +32,7 @@ function urltest(url) {
 app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
-    urltest(newurl);
+    urltest(origurl);
     var doc = {'origurl': origurl, 'newurl': newurl, 'key': key};
     conn.collection('urls').insert(doc);
     res.json(doc);
