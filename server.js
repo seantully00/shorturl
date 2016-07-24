@@ -41,7 +41,7 @@ app.get('/new/:origurl', function(req, res) {
 
 //Pull URLs
 app.get('/:number', function(req, res) {
-    var pullurl = mongoose.model('newurl', urlSchema);
+    var pullurl = mongoose.model('key', urlSchema);
     var number = req.params.number;
     pullurl.findOne({'key': number}, 'origurl', function(err, res) {
         if (err) {
