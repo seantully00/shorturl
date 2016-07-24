@@ -39,21 +39,21 @@ app.get('/new/:origurl', function(req, res) {
     key = key + 1;
 });
 
-/*//Pull URLs
+//Pull URLs
 app.get('/:number', function(req, res) {
-    var pullurl = mongoose.model('key', urlSchema);
     var number = req.params.number;
-    pullurl.findOne({'key': number}, 'origurl', function(err, res) {
-        if (err) {
-            res.json({
-                "status": "Error"
-            });
-        } else {
-            res.redirect(res.origurl);
-        }
-        
+    conn.find({"key": number}).limit(1).toArray(function(err, doc) {
+      if (err) {
+        throw err;
+      }
+      if (doc.length === 0) {
+        res.json({"error": "Unable to find original url."});
+      } else {
+        res.redirect(doc[0].original_url);
+      }
+
     });
-});*/
+});
 
 
 //Define port
