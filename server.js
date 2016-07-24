@@ -49,9 +49,8 @@ app.get('/:number', function(req, res) {
       if (doc.length === 0) {
         res.json({"error": "Unable to find original url."});
       } else {
-        res.redirect(doc[0].original_url);
+        res.redirect(doc[0].origurl);
       }
-
     });
 });
 
