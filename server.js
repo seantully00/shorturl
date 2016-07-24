@@ -10,7 +10,8 @@ var app = express();
 //Mongoose
 var mongoose = require('mongoose');
 var url = process.env.MONGOLAB_URI;
-var conn = mongoose.connect(url);
+mongoose.connect(url);
+var conn = mongoose.connection;
 
 var urlSchema = mongoose.Schema({
     origurl          : String,
