@@ -48,10 +48,8 @@ app.get('/new/:origurl', function(req, res) {
 //Pull URLs
 app.get('/:number', function(req, res) {
     var number = req.params.number;
-    urlb.findOne({key: number}, function(err, site) {
-        if (err) {
-            throw err;
-        }
+    urlb.findOne({key: number}, {origurl:1}, function(err, site) {
+        if (err) {console.log(err); res.redirect("/");} 
         else {
             res.redirect(site.origurl);
         }
