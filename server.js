@@ -40,9 +40,9 @@ app.get('/new/:origurl', function(req, res) {
 });
 
 //Pull URLs
-app.get('/:number', function(req, res) {
+/*app.get('/:number', function(req, res) {
     var number = req.params.number;
-    conn.find({"key": number}).limit(1).toArray(function(err, doc) {
+    conn.find({"key": number}).limit(1).toArray(function(err, doc) {    
       if (err) {
         throw err;
       }
@@ -51,6 +51,15 @@ app.get('/:number', function(req, res) {
       } else {
         res.redirect(doc[0].origurl);
       }
+    });
+});*/
+app.get('/*', function(req, res) {
+    conn.findOne({key: req.url.slice(1)}).exec().then(function(found) {
+        if (found) {
+            res.redirect(found.origurl);
+        } else {
+            res.send({error: "No short url found for given input"});
+        }
     });
 });
 
