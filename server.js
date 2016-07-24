@@ -23,9 +23,6 @@ var urlSchema = mongoose.Schema({
     key      : Number
 });
 
-var urlb = mongoose.model("urlb", urlSchema);
-
-
 function urltest(testurl) {
     var a = "www.";
     var b = "http";
@@ -48,7 +45,7 @@ app.get('/new/:origurl', function(req, res) {
 //Pull URLs
 app.get('/:number', function(req, res) {
     var number = req.params.number;
-    urlb.findOne({'key': number}, {origurl:1}, function(err, site) {
+    coll.findOne({'key': number}, {origurl:1}, function(err, site) {
         if (err) {console.log(err); res.redirect("/");} 
         else {
             res.redirect(site.origurl);
