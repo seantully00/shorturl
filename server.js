@@ -1,5 +1,8 @@
 'use strict';
 
+require(‘dotenv’).config({
+ silent: true
+ });
 var logger = require('morgan');
 var key = 0;
 
@@ -12,6 +15,7 @@ var mongoose = require('mongoose');
 var url = process.env.MONGOLAB_URI;
 mongoose.connect(url);
 var conn = mongoose.connection;
+var coll = conn.collection('urls');
 
 var urlSchema = mongoose.Schema({
     origurl          : String,
@@ -40,17 +44,15 @@ app.get('/new/:origurl', function(req, res) {
 });
 
 //Pull URLs
-app.get('/key/:number', function(req, res) {
+app.get('/:number', function(req, res) {
     var number = req.params.number;
-    conn.find({"key": number}).limit(1).toArray(function(err, doc) {    
-      if (err) {
-        throw err;
-      }
-      if (doc.length === 0) {
-        res.json({"error": "Unable to find original url."});
-      } else {
-        res.redirect(doc[0].origurl);
-      }
+    coll.findOne({'key': number}, function(err, doc) {
+        if (err) {
+            throw err;
+        }
+        else {
+            res.redirect(coll.origurl);
+        }
     });
 });
 
