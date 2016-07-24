@@ -39,7 +39,7 @@ app.get('/new/:origurl', function(req, res) {
     key = key + 1;
 });
 
-//Pull URLs
+/*//Pull URLs
 app.get('/:number', function(req, res) {
     var pullurl = mongoose.model('key', urlSchema);
     var number = req.params.number;
@@ -53,7 +53,7 @@ app.get('/:number', function(req, res) {
         }
         
     });
-});
+});*/
 
 
 //Define port
