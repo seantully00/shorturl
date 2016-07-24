@@ -40,7 +40,7 @@ app.get('/new/:origurl', function(req, res) {
 });
 
 //Pull URLs
-app.get('/:number', function(req, res) {
+app.get('/key/:number', function(req, res) {
     var number = req.params.number;
     conn.find({"key": number}).limit(1).toArray(function(err, doc) {    
       if (err) {
