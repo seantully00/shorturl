@@ -1,8 +1,8 @@
 'use strict';
 
-require(‘dotenv’).config({
+/*require(‘dotenv’).config({
  silent: true
- });
+ });*/
 var logger = require('morgan');
 var key = 0;
 
