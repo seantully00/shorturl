@@ -44,6 +44,7 @@ app.get('/new/:origurl', function(req, res) {
 
 //Pull URLs
 app.get('/:number', function(req, res) {
+    console.log(req);
     var number = req.params.number;
     coll.findOne({'key': number}, function(err, site) {
         if (err) {console.log(err); res.redirect("/");} 
