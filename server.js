@@ -20,7 +20,7 @@ var coll = conn.collection('urls');
 var urlSchema = mongoose.Schema({
     origurl          : String,
     newurl     : String,
-    key      : Number
+    key      : String
 });
 
 function urltest(testurl) {
@@ -32,7 +32,7 @@ function urltest(testurl) {
 }
 
 //Get URLs
-/*
+
 app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
@@ -42,7 +42,7 @@ app.get('/new/:origurl', function(req, res) {
     res.json(doc);
     key = key + 1;
 });
-*/
+
 
 //Pull URLs
 app.get('/:number', function(req, res) {
