@@ -48,7 +48,7 @@ app.get('/:number', function(req, res) {
     coll.findOne({'key': number}, function(err, site) {
         if (err) {console.log(err); res.redirect("/");} 
         else {
-            res.redirect(site.origurl);
+            //res.redirect(site.origurl);
         }
     });
 });
