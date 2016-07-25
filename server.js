@@ -49,6 +49,7 @@ app.get('/:number', function(req, res) {
         if (err) {console.log(err); res.redirect("/");} 
         else {
             //res.redirect(site.origurl);
+            res.redirect("/");
         }
     });
 });
