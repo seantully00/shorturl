@@ -4,7 +4,9 @@
  silent: true
  });*/
 var logger = require('morgan');
-//var key = 0;
+var key = 0;
+var a = "www.";
+var b = "http";
 
 //Express
 var express = require('express');
@@ -16,7 +18,7 @@ var url = process.env.MONGOLAB_URI;
 mongoose.connect(url);
 var conn = mongoose.connection;
 var coll = conn.collection('urls');
-var key = Number(coll.find().sort({key:-1}).limit(1)) + 1;
+//var key = Number(coll.find().sort({key:-1}).limit(1)) + 1;
 
 var urlSchema = mongoose.Schema({
     origurl          : String,
@@ -24,20 +26,16 @@ var urlSchema = mongoose.Schema({
     key      : String
 });
 
-function urltest(testurl) {
-    var a = "www.";
-    var b = "http";
-    if (testurl.substring(0, a.length) != a || testurl.substring(0, b.length) != b) {
-        console.log("Error: Not an acceptable url");
-    }
-}
+
 
 //Get URLs
 
 app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
-    urltest(origurl);
+    if (origurl.substring(0, a.length) != a || origurl.substring(0, b.length) != b) {
+        res.json({"status": "Invalid URL"});
+    }
     var doc = {'origurl': origurl, 'newurl': newurl, 'key': key.toString()};
     conn.collection('urls').insert(doc);
     res.json(doc);
