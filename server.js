@@ -37,7 +37,7 @@ app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
     urltest(origurl);
-    var doc = {'origurl': origurl, 'newurl': newurl, 'key': key};
+    var doc = {'origurl': origurl, 'newurl': newurl, 'key': key.toString()};
     conn.collection('urls').insert(doc);
     res.json(doc);
     key = key + 1;
@@ -51,10 +51,11 @@ app.get('/:number', function(req, res) {
     coll.findOne({'key': number}, function(err, site) {
         if (err) {console.log(err); res.redirect("/");} 
         else {
-            console.log('Found URL')
-            console.log(site.origurl);
-            res.redirect(site.origurl);
-            //res.redirect("/");
+            if (site) {
+                console.log('Found URL')
+                console.log(site.origurl);
+                res.redirect(site.origurl);
+            }
         }
     });
 });
