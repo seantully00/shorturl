@@ -4,7 +4,7 @@
  silent: true
  });*/
 var logger = require('morgan');
-var key = 0;
+//var key = 0;
 
 //Express
 var express = require('express');
@@ -16,6 +16,7 @@ var url = process.env.MONGOLAB_URI;
 mongoose.connect(url);
 var conn = mongoose.connection;
 var coll = conn.collection('urls');
+var key = Number(coll.find().sort({key:-1}).limit(1)) + 1;
 
 var urlSchema = mongoose.Schema({
     origurl          : String,
