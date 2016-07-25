@@ -46,7 +46,6 @@ app.get('/new/:origurl', function(req, res) {
 
 //Pull URLs
 app.get('/:number', function(req, res) {
-    console.log(req);
     var number = req.params.number;
     coll.findOne({'key': number}, function(err, site) {
         if (err) {console.log(err); res.redirect("/");} 
@@ -54,7 +53,10 @@ app.get('/:number', function(req, res) {
             if (site) {
                 console.log('Found URL')
                 console.log(site.origurl);
-                res.redirect(site.origurl);
+                res.redirect('http://' + site.origurl);
+            }
+            else {
+                res.redirect('/')
             }
         }
     });
