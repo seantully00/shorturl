@@ -33,7 +33,7 @@ function urltest(testurl) {
 
 //Get URLs
 
-app.post('/new/:origurl', function(req, res) {
+app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
     urltest(origurl);
