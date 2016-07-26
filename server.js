@@ -54,7 +54,7 @@ app.get('/:number', function(req, res) {
             if (site) {
                 console.log('Found URL')
                 console.log(site.origurl);
-                res.redirect('http://' + site.origurl);
+                res.redirect('' + site.origurl);
             }
             else {
                 res.redirect('/')
