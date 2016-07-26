@@ -31,8 +31,8 @@ var urlSchema = mongoose.Schema({
 
 //Get URLs
 
-app.get('/new/:origurl', function(req, res) {
-    var origurl = req.params.origurl + req.params[0];
+app.get('/new/:origurl*', function(req, res) {
+    var origurl = req.params['origurl'] + req.params[0];
     var newurl = "https://stshorturl.herokuapp.com/" + key;
     if ((origurl.substring(0, a.length) === a) || (origurl.substring(0, b.length) === b) || (origurl.substring(0, c.length) === c)) {
     var doc = {'origurl': origurl, 'newurl': newurl, 'key': key.toString()};
