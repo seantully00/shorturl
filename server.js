@@ -33,13 +33,14 @@ var urlSchema = mongoose.Schema({
 app.get('/new/:origurl', function(req, res) {
     var origurl = req.params.origurl;
     var newurl = "https://stshorturl.herokuapp.com/" + key;
-    if ((origurl.substring(0, a.length) != a) || (origurl.substring(0, b.length) != b)) {
-        res.json({"status": "Invalid URL"});
-    }
+    if ((origurl.substring(0, a.length) === a) || (origurl.substring(0, b.length) === b)) {
     var doc = {'origurl': origurl, 'newurl': newurl, 'key': key.toString()};
     conn.collection('urls').insert(doc);
     res.json(doc);
-    key = key + 1;
+    key = key + 1; }
+    else {
+        res.json({"status": "Invalid URL"});
+    }
 });
 
 
