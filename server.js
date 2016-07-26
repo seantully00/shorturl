@@ -5,7 +5,7 @@ var key = 0;
 var a = "www.";
 var b = "http://";
 var c = "https://"
-var regex = /(www.|http:\/\/|https:\/\/)(www.\w*\.|\w*\.)(\w*\.\w*|\w*)/g;
+var regex = /(www.|http:\/\/|https:\/\/)(www.\w*\.|\w*\.)(\w*\.\w*|\w*)/;
 
 
 //Express
