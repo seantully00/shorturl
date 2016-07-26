@@ -52,18 +52,19 @@ app.get('/:number', function(req, res) {
         if (err) {console.log(err); res.redirect("/");} 
         else {
             if (site) {
-                console.log('Found URL')
+                console.log('Found URL');
                 console.log(site.origurl);
-                if ((origurl.substring(0, a.length) === a)) {
-                    res.redirect('http://' + site.origurl)
-                } else if ((origurl.substring(0, b.length) === b) || (origurl.substring(0,c.length) === c)) {
+                if (site.origurl.substring(0, a.length) === a) {
+                    res.redirect('http://' + site.origurl);
+                } else if ((site.origurl.substring(0, b.length) === b) || (site.origurl.substring(0,c.length) === c)) {
                 res.redirect('' + site.origurl);
             }
             else {
-                res.redirect('/')
+                res.redirect('/');
             }
         }
     }
+});
 });
 
 
